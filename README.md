@@ -3,8 +3,6 @@
 The repository is only for repeating and practising object-oriented design patterns with minimal examples.
 The reference is "Design Patterns: Elements of Reusable Object-Oriented Software" by the Gang of Four.
 
-Moreover I have tried to also to implement those in the progamming language Rust.
-
 ## The following patterns are implemented
 
 | Pattern                  | C++ | Rust  |
