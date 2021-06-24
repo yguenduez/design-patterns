@@ -11,7 +11,7 @@ The reference is "Design Patterns: Elements of Reusable Object-Oriented Software
 | Factory Method           | [X] | [X]   |
 | Builder Pattern          | [X] | [X]   |
 | Prototype                | [X] | [X]   |
-| Singleton                | [ ] | [ ]   |
+| Singleton                | [X] | [ ]   |
 | ------------------------ | --- | ----- |
 | Adapter Pattern          | [ ] | [ ]   |
 | Bridge Pattern           | [ ] | [ ]   |
