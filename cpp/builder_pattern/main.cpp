@@ -25,10 +25,10 @@ public:
 
 class Builder {
 public:
-  virtual void buildHumanCorpus() = 0;
-  virtual void buildArm() = 0;
-  virtual void buildLeg() = 0;
-  virtual void buildHead() = 0;
+  virtual Builder &buildHumanCorpus() = 0;
+  virtual Builder &buildArm() = 0;
+  virtual Builder &buildLeg() = 0;
+  virtual Builder &buildHead() = 0;
 
   virtual HumanBody const &getBody() = 0;
 
@@ -44,40 +44,50 @@ public:
 class GodDirector : Director {
 public:
   void createHuman(Builder &builder) {
-    builder.buildHumanCorpus();
-    builder.buildLeg();
-    builder.buildLeg();
-    builder.buildHead();
-    builder.buildArm();
-    builder.buildArm();
+    builder.buildHumanCorpus()
+        .buildLeg()
+        .buildLeg()
+        .buildHead()
+        .buildArm()
+        .buildArm();
   }
 };
 
 class DevilDirector : Director {
 public:
   void createHuman(Builder &builder) {
-    builder.buildHumanCorpus();
-    builder.buildLeg();
-    builder.buildLeg();
-    builder.buildLeg();
-    builder.buildHead();
-    builder.buildHead();
-    builder.buildArm();
-    builder.buildArm();
+    builder.buildHumanCorpus()
+        .buildLeg()
+        .buildLeg()
+        .buildLeg()
+        .buildHead()
+        .buildHead()
+        .buildArm()
+        .buildArm();
   }
 };
 
 struct BodyBuilder : Builder {
 public:
-  void buildHumanCorpus() override {
+  Builder &buildHumanCorpus() override {
     if (!body) {
       body = std::make_unique<HumanBody>();
     }
+    return *this;
   }
 
-  void buildArm() override { body->addArm(Arm{}); };
-  void buildLeg() override { body->addLef(Leg{}); };
-  void buildHead() override { body->addHead(Head{}); };
+  Builder &buildArm() override {
+    body->addArm(Arm{});
+    return *this;
+  };
+  Builder &buildLeg() override {
+    body->addLef(Leg{});
+    return *this;
+  };
+  Builder &buildHead() override {
+    body->addHead(Head{});
+    return *this;
+  };
 
   HumanBody const &getBody() override { return *body; }
 
